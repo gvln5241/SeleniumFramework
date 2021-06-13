@@ -9,11 +9,15 @@ public class WebDriverOpen {
 	
 	public static void main(String[] args) {
 	
-	WebDriverManager.chromedriver().setup();
-	WebDriver driver = new ChromeDriver();
-	
-	driver.get("http://google.com");
+	googleSearch();
 	
 	}
+	public static void googleSearch() {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://google.com");
+	}
+	
 
 }
