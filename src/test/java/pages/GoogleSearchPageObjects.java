@@ -8,8 +8,8 @@ public class GoogleSearchPageObjects {
 
 	WebDriver driver = null;
 
-	By text_search = By.id("lst-id");
-	By button_search = By.id("btnK");
+	By text_search = By.name("q");
+	By button_search = By.name("btnK");
 
 	public GoogleSearchPageObjects(WebDriver driver) {
 		this.driver = driver;
