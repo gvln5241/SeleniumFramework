@@ -1,7 +1,10 @@
 package tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,12 +15,17 @@ import pages.GoogleSearchPageObjects;
 public class TestNGGoogleSearchPageObjTest {
 
 	private static WebDriver driver = null;
+	private static WebDriverWait wait20 = null;
 
 	@BeforeTest
 	public void testSetUp() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("http://google.com");
+
+		wait20 = new WebDriverWait(driver, 20);
 	}
 
 	@Test
@@ -27,6 +35,7 @@ public class TestNGGoogleSearchPageObjTest {
 
 		searchPageObj.setTextInSearchBox("POM test cases");
 		searchPageObj.clickSearchButton();
+		searchPageObj.setTextInSearchBox("test1");
 	}
 
 	@AfterTest
