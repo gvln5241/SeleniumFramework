@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -30,10 +32,21 @@ public class ExtentReportWithTestNG {
 		extent.attachReporter(spark);
 	}
 
+	@org.testng.annotations.BeforeTest
+	public void tBeforetest() {
+		System.out.println("From @beforetest");
+	}
+
+	@org.testng.annotations.BeforeClass
+	public void tBeforeclass() {
+		System.out.println("@beforeclass");
+	}
+
 	@BeforeMethod
 	public void setup() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 	}
 
@@ -42,32 +55,12 @@ public class ExtentReportWithTestNG {
 		log = extent.createTest("Test1");
 
 		driver.get("http://google.com");
-		log.info("URL opened");
 
 		searchobj = new GoogleSearchPageObjects(driver);
-
 		searchobj.setTextInSearchBox("from testNG");
-		
 		searchobj.clickSearchButton();
-		log.pass("From @Test 1");
-	}
 
-	@AfterMethod
-	public void tearDown() {
-		driver.close();
-		log.pass("closing the browser");
-
-		driver.quit();
-		log.info("Last step in tearDown");
-		log.info("End of Test execution");
-		
-		log.pass("From @Aftermethod");
-	}
-
-	@AfterSuite
-	public void suiteTeardown() {
-		log.info("@After Suite");
-		extent.flush();
+		log.pass("From @Test");
 	}
 
 	@Test
@@ -75,27 +68,29 @@ public class ExtentReportWithTestNG {
 		System.out.println("test2");
 		log = extent.createTest("Test2");
 		driver.get("http://bing.com");
-		log.pass("From @Test 2");
+		log.pass("From @Test");
 	}
 
-	@org.testng.annotations.BeforeClass
-	public void tBeforeclass() {
-		System.out.println("@beforeclass");
+	@AfterMethod
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+		log.pass("From @Aftermethod");
 	}
-	
+
 	@org.testng.annotations.AfterClass
 	public void tAfterclass() {
 		log.info("From @Aftereclass");
 	}
-	
-	@org.testng.annotations.BeforeTest
-	public void tBeforetest() {
-		System.out.println("From @beforetest");
-	}
-	
+
 	@org.testng.annotations.AfterTest
 	public void tAftertest() {
 		log.info("From @Aftertest");
 	}
-	
+
+	@AfterSuite
+	public void suiteTeardown() {
+		log.info("@AfterSuite");
+		extent.flush();
+	}
 }
