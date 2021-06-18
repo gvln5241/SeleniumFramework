@@ -8,6 +8,7 @@ public class ExcelDemo {
 		excel.getRowCount();
 		excel.getCellDataString(0, 0);
 		excel.getCellDataNumber(1, 1);
+		
 	}
 
 }
