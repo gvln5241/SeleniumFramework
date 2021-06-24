@@ -11,19 +11,27 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.PropertiesFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.GoogleSearchPageObjects;
 
 public class TestNGGoogleSearchPageObjTest {
 
+	public static String browserName=null;
 	private static WebDriver driver = null;
 	private static WebDriverWait wait20 = null;
+	PropertiesFile prop;
 
 	@BeforeMethod
 	public void testSetUp() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-
+		prop = new PropertiesFile();
+		prop.getProperties();
+		
+		if (browserName.toLowerCase().equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("http://google.com");
 
