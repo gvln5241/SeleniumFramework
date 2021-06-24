@@ -5,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,7 +22,7 @@ public class TestNGGoogleSearchPageObjTest {
 	private static WebDriverWait wait20 = null;
 	PropertiesFile prop;
 
-	@BeforeTest
+	@BeforeMethod
 	public void testSetUp() {
 		prop = new PropertiesFile();
 		prop.getProperties();
@@ -43,10 +45,10 @@ public class TestNGGoogleSearchPageObjTest {
 
 		searchPageObj.setTextInSearchBox("POM test cases");
 		searchPageObj.clickSearchButton();
-		searchPageObj.setTextInSearchBox("test1");
+		//searchPageObj.setTextInSearchBox("test1");
 	}
 
-	@AfterTest
+	@AfterMethod
 	public void testTearDown() {
 		driver.close();
 		driver.quit();
