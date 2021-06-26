@@ -1,4 +1,4 @@
-package Demo1;
+package collectionsDemo;
 
 import java.util.Collection;
 import java.util.Collections;
