@@ -13,7 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ExplicitWait {
 	protected WebDriver driver;
-
+	
 	@Test
 	public void guru99tutorials() throws InterruptedException {
 		//System.setProperty("webdriver.chrome.driver", ".\\chromedriver.exe");
