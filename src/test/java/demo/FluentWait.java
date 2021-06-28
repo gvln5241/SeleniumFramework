@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public class FluentWait {
 	protected WebDriver driver;
+	
+	//from git
 /*
 	@Test
 	public void guru99tutorials() throws InterruptedException {
