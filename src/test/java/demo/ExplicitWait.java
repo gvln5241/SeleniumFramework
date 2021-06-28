@@ -13,6 +13,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ExplicitWait {
 	protected WebDriver driver;
+	int i = 10;
+	int i1=11;
 
 	@Test
 	public void guru99tutorials() throws InterruptedException {
